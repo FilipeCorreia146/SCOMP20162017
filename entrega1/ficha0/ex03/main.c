@@ -11,12 +11,10 @@ int main(void){
 
 	int sum;
 
-	sum = sumPairs(vec, n);
-
-
-
-	printf("The sum of the pair elements is: %d\n", sum);
+	sum=sumPairs(vec, n);
 	
-	return 0;
+	printf("The sum of the pair elements is: %d\n", sum);
 
+	return 0;
+	
 }
