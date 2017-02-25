@@ -11,17 +11,12 @@ int main(void){
 
 	float vec2 [10] = {0};
 
-
-	int sum, i = 0;
-
 	invert(vec, n, vec2);
-
 
 	for(i = 0; i<n; i++){
 
 		printf("Element: %d Inverse:%f\n",*(vec+i), *(vec2+i));
 	
-
 	}
 
 	return 0;
