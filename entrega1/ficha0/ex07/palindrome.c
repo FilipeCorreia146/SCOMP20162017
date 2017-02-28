@@ -5,7 +5,7 @@ int palindrome(char * str, int check){
 
 	char * temp = NULL;
 
-	temp = (char *)  malloc( sizeof(str) );
+	temp = (char *) malloc( sizeof(char));
 
 	int cont = 0;
 
@@ -13,16 +13,14 @@ int palindrome(char * str, int check){
 
 		if( (* str > 65 && * str < 91) || (* str > 96 && * str < 123) ){
 
-			*temp = *str;
-			temp++;
+			*(temp+cont) = *str;
 			cont++;
+			temp = (char*) realloc( temp, cont +1);
 		}
 
 		str++;
 
 	}
-
-	temp = temp - cont;
 
 	int i;
 
@@ -34,6 +32,8 @@ int palindrome(char * str, int check){
 
 		}
 	}
+
+	free(temp);
 
 return check;
 
