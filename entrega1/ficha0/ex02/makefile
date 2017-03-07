@@ -1,4 +1,4 @@
-ex01: main.o subtracao.o
+ex02: main.o subtracao.o
 	gcc main.o subtracao.o -o ex02
 	
 subtracao.o: subtracao.c
