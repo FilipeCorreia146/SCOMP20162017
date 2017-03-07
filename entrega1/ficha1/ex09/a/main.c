@@ -18,18 +18,22 @@ int main(void){
 
 	}
 
-	for(i = 0; i<5; i++){
+	if(pid ==0){
+
+		num = num -200000;
+
+	}
+
+	for(i = 0; i<4; i++){
 
 		if(pid == 0){
 
-			num = num -200000;
 			pid = fork();
+			num = num -200000;
 
 		}	
 
 	}
-
-	int status;
 
 	wait(NULL);
 
