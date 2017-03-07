@@ -5,12 +5,12 @@
 #include <unistd.h>
 
 int main (void){
-
-	pid_t pid;
+	int num_filhos = 3;
+	pid_t pid [num_filhos];
 	int f;
-	int status;
+	int i;
 	
-	pid = fork();
+	pid[0] = fork();
 	if(pid <0){
 		perror("Erro ao criar o processo.");
 		exit(-1);
@@ -18,13 +18,18 @@ int main (void){
 	for(f=0; f<2; f++){
 		if(pid>0){
 			printf("Eu sou o pai \n");
-			pid = fork();
+			pid[f+1] = fork();
 		}
 		else{
 			sleep(1);
+			exit(f+1);
 		}
 	}
-	wait(&status);
+	for(i = 0; i < num_filhos; i++){
+		if(pid[i] >0){
+			for(f = 0; f < num_filhos; f++){
+				wait(NULL);
+			}
 	
 	return 0;	
 }
