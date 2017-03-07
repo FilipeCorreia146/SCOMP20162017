@@ -4,14 +4,14 @@
 
 int main (void){
 
-	pid_t pid;
+	pid_t pid [3];
 	int f;
 	
-	pid = fork();
+	pid[0] = fork();
 	for(f=0; f<2; f++){
 		if(pid>0){
 			printf("Eu sou o pai \n");
-			pid = fork();
+			pid[f+1] = fork();
 		}
 		else{
 			sleep(1);
