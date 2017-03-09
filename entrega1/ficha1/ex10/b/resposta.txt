@@ -1,0 +1,3 @@
+10. b) Pode não ser a mais eficiente uma vez que quando o número é encontrado
+os outros processos não terminam. Poderiam acabar assim que um deles 
+encontrasse o número esperado.
