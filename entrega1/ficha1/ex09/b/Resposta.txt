@@ -1,0 +1,1 @@
+R: O resultado ficará sempre por ordem da forma como o exercicio foi feito, pois cada processo tem apenas um filho e o wait(NULL) garante que cada pai só executa após cada processo filho terminar a execução.

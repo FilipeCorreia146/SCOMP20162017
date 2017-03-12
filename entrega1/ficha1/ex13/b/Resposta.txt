@@ -1,0 +1,1 @@
+R: O processo pai vai fazer um processo filho que por sua vez vai fazer outro processo filho, quando chegam à linha 9, onde ocorre o exclp, os processos saiem do loop e passam a executar o programa SISTCOMP. Como isto ocorre num ciclo "for" de 3 iterações, o processo SISTCOMP é executado 6 vezes.

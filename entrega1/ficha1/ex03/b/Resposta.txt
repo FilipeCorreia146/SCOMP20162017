@@ -1,0 +1,1 @@
+R: É apresentado no ecrã "Sistemas de Computadores" 16 vezes, porque há um ciclo for com 4 iterações para o processo pai e cada processo filho vai ter cada vez menos processos filhos, ou seja 2 elevado a 4 = 16;

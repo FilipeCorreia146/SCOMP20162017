@@ -1,0 +1,1 @@
+R: Neste caso, em que estamos a executar apenas os comandos sem argumentos, o execlp é mais favorável que o execvp porque vai necessitar de menos espaço para a sua execução, no entanto, se quisermos executar comandos com argumentos (Exemplo: "ls -la"), o execvp torna as coisas mais faceis. 

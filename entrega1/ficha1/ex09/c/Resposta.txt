@@ -1,0 +1,1 @@
+R: Usando o comando "ps -u" quando se corre o programa vemos todos os processos do atual utilizador. Assim, é possível ao longo do tempo ver a lista de processos a crescer até atingirmos o primeiro exit, que faz com que a lista volte a diminuir.

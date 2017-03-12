@@ -1,0 +1,1 @@
+R: É possível que o 1 apareça depois do 3 porque não há forma de controlar qual dos processos executa primeiro.
