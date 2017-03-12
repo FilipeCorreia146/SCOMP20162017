@@ -1,0 +1,3 @@
+12. b) O SISTCOMP vai ser executado apenas uma vez porque quando o programa
+chega ao execlp depois vai executar o SISTCOMP não retornando ao programa que
+invocou o exec a não ser que haja erro.
