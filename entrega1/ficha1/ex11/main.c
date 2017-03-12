@@ -7,44 +7,43 @@
 
 int main(void){
 
+	const unsigned int TAMANHO = 6;
+
 	int i;
 	int reps = 3;
 
-	pid_t lista[2];
+	pid_t lista[TAMANHO];
 	char ret;
 
 	for(i = 0; i<reps; i++){
 
-		ret = cria_gemeos(lista);
+		ret = cria_gemeos(lista + i*2);
 
-		if( ret == 'a'){
+		if( ret != 'p' ){
 		
 			printf("PID:%d, PPID:%d, Return:%c\n", getpid(), getppid(), ret);
 
-			exit(0);
+			exit(ret);
 
 		}
 
-		if( ret == 'b'){
-			int status;
-
-			waitpid(lista[0], &status, 0);
-
-			printf("PID:%d, PPID: %d, Return:%c\n", getpid(), getppid(), ret);
-
-			exit(0);
-
-		}else{
-			int status;
-
-			waitpid(lista[0],&status, 0);
-
-			waitpid(lista[1], &status, 0);
-
-			printf("PID1: %d, PID2: %d\n", lista[0], lista[1]);
-
-		}
 	}
+
+	int j;
+
+	int status;
+
+	for(j = 0; j< 6; j++){
+
+		waitpid(lista[j], &status, 0);
+
+		if(WIFEXITED(status)){
+
+			printf("TERMINOU O PROCESSO: PID: %d, Return: %c\n", lista [j], WEXITSTATUS(status));
+
+		}
+
+	 }
 
 return 0;
 }
