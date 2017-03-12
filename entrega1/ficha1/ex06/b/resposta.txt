@@ -1,0 +1,3 @@
+6. b) Ao executar o comando ps e possível ver a quantidade de processos. Esta
+lista proessos vai aumentando enquanto o processo pai espera pelo processo 
+filho até que diminui quando este termina.
