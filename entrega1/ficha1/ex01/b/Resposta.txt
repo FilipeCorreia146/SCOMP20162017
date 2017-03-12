@@ -1,0 +1,1 @@
+R: É apresentado no ecrã "Sistemas de Computadores" 2 elevado a n vezes, sendo n o numero de forks no código, assim é apresentado 4 vezes, pois há 4 processos em simultaneo.
