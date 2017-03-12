@@ -1,0 +1,6 @@
+14. b) Este programa cria 7 novos processos. Desta forma, como não existe 
+qualquer condição a diferenciar a ação dos processos pai dos processos filho,
+o programa exame vai ser executado por todos os processos, ou seja 8 vezes,
+e o programa alunos não vai ser executado de todo, uma vez que a invocação 
+do programa exame pelo exec não permite a que este retorne ao programa 
+original.

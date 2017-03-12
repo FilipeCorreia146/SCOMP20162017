@@ -1,0 +1,1 @@
+14. a) O programa exame é executada 8 vezes. O programa alunos não é executado.
