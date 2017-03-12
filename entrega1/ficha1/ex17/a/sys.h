@@ -1,1 +1,1 @@
-int sys( char * command);
+int sys( char ** command);

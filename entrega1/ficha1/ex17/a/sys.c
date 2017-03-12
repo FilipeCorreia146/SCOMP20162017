@@ -3,9 +3,8 @@
 #include<unistd.h>
 #include<stdlib.h>
 #include<sys/wait.h>
-#include "split.h"
 
-int sys(char * command){
+int sys(char ** command){
 
 	pid_t pid;
 
@@ -20,9 +19,7 @@ int sys(char * command){
 	}
 	if( pid == 0){
 
-		char ** args = split(command);
-
-		execvp(args[0], args);
+		execvp(command[0], command);
 
 	}
 

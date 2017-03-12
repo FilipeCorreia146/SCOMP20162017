@@ -1,0 +1,3 @@
+R: A função system() é mais lenta que um fork()/exec() e pode comportar-se de forma diferente em diferentes sistemas. 
+System é um potencial risco de segurança se receber uma string de uma fonte não confiável.
+Assim, system() não é de todo mais eficiente que fork()/exec().
