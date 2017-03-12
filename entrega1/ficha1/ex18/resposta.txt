@@ -1,0 +1,2 @@
+18. O programa vai correr normalmente mostrando uma linha em branco e a última
+linha do ficheiro "Sistema de Computadores"
