@@ -4,11 +4,22 @@
 #include<stdlib.h>
 #include<sys/wait.h>
 #include "sys.h"
-#include "split.h"
 
 int main(int argc, char **argv){
 
-	char * command = argv[1];
+	char ** command = NULL;
+
+	command = malloc(sizeof(char*) * (argc-1));
+
+	int i;
+
+	for(i =1; i< argc; i++){
+
+		command[i-1] = argv[i];
+
+	}
+
+	command [argc] = NULL;
 
 	sys(command);
 
