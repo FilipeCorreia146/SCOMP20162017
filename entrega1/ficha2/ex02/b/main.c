@@ -36,9 +36,11 @@ int main(){
 		close(fd[1]);
 		wait(NULL);
 	}else{
+		int pos;
 		close(fd[1]);
 		read(fd[0], &estrutura.num, sizeof(estrutura.num));
-		read(fd[0], &estrutura.nome, sizeof(estrutura.nome));
+		pos = read(fd[0], &estrutura.nome, sizeof(estrutura.nome));
+		estrutura.nome[pos]= '\0';
 		printf("Número lidos do pipe: %d\n",estrutura.num);
 		printf("Nome lido do pipe: %s", estrutura.nome);
 		close(fd[0]);

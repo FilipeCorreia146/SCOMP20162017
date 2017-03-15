@@ -30,9 +30,11 @@ int main(){
 		close(fd[1]);
 		wait(NULL);
 	} else{
+		int pos;
 		close(fd[1]);
 		read(fd[0], &num, sizeof(num));
-		read(fd[0], &nome, sizeof(nome));
+		pos = read(fd[0], &nome, sizeof(nome));
+		nome[pos]= '\0';
 		printf("Número lido do pai: %d\n", num);
 		printf("Nome lido do pai: %s\n", nome);
 		close(fd[0]);
