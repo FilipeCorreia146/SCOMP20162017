@@ -11,8 +11,6 @@ int main(void){
 
 	int fd[2];
 
-	char readbuffer[80];
-
 	pipe(fd);
 
 	pid = fork();
@@ -31,9 +29,19 @@ int main(void){
 
 		char str[] = "Hello world!";
 
-		write(fd[1], str, strlen(str));
+		int length;
+
+		length = strlen(str) +1;
+
+		write(fd[1], &length, sizeof(int));
+
+		write(fd[1], str, strlen(str)+1);
 
 		char str2 [] = "Goodbye!";
+
+		length = strlen(str2) +1;
+
+		write(fd[1], &length, sizeof(int));
 
 		write(fd[1], str2, strlen(str2)+1);
 
@@ -46,9 +54,15 @@ int main(void){
 
 		close(fd[1]);
 
-		while(read(fd[0],readbuffer, sizeof(readbuffer))>0){
+		int readbuffer1;
 
-			printf("%s\n", readbuffer);
+		while(read(fd[0], &readbuffer1, sizeof(readbuffer1))>0){
+
+			char readbuffer2[readbuffer1];
+
+			read(fd[0], &readbuffer2, sizeof(readbuffer2));
+
+			printf("%s\n", readbuffer2);
 
 		}
 
