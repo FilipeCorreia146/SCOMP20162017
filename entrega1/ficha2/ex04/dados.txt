@@ -1,0 +1,2 @@
+Ficheiro teste para que o processo pai copie para o processo filho
+pelo pipe
