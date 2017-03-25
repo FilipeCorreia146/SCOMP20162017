@@ -14,7 +14,12 @@ int main(void){
 
 	int fd[2], n;
 
-	pipe(fd);
+	if( pipe(fd) == -1){
+
+		perror("Falha no pipe");
+		return -1;
+
+	}
 
 	pid = fork();
 
@@ -37,6 +42,7 @@ int main(void){
 
 		close(fd[0]);
 		wait(NULL);
+		exit(0);
 
 	}
 	if( pid == 0){
