@@ -1,0 +1,12 @@
+18.
+Cria um pipe, muda o descritor de leitura do processo para a extremidade
+de leitura do pipe e muda o descritor de escrita do processo para a extremidade
+de escrita do pipe. Ambas as extremidades são fechadas. Entra num ciclo
+onde cria mais 4 pipes e 4 novos processos.Depois se se tratar do processo
+pai o descritor de escrita é mudado para a extremidade de escrita do pipe,
+se por outro lado for o processo filho então o descritor de leitura passa para 
+a extremidade de leitura do pipe. Ambas as extremidades dos pipes são fechadas.
+Isto permite que haja partilha de informação entre o processo pai e o filho.
+O segundo processo imprime, se seguida a informação do pai e assim
+sucessivamente. O pai imprime apenas a informação do último processo uma vez
+que tem de esperar que os processos filho terminem.
