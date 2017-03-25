@@ -10,15 +10,25 @@ int main(void){
 
 	int num = 0, fd[2], fd2[2], factorial;
 
-	pipe(fd);
+	if( pipe(fd) == -1){
 
-	pipe(fd2);
+		perror("Erro no pipe");
+		return 0;
+	}
+
+	if( pipe(fd2) == -1){
+
+		perror("Erro no pipe");
+		return 0;
+
+	}
 
 	pid = fork();
 
 	if(pid < 0){
 
 		perror("Erro no fork");
+		exit(-1);
 
 	}
 	if(pid > 0){
@@ -44,6 +54,9 @@ int main(void){
 		close(fd[1]);
 		close(fd2[0]);
 
+		wait(NULL);
+		exit(0);
+
 	}
 
 	if(pid == 0){
@@ -53,6 +66,9 @@ int main(void){
 
 		dup2(fd[0], 0);
 		dup2(fd2[1], 1);
+
+		close(fd[0]);
+		close(fd2[0]);
 
 		execlp("./factorial", "factorial", NULL);
 		perror("Erro ao executar exec");
