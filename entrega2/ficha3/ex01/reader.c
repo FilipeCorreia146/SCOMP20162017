@@ -47,22 +47,21 @@ int main (int argc, char** argv){
 
 	}
 
+
+	if(close(fd) < 0) {
+
+		perror("Error closing shared memory");
+		exit(5);
+
+	}
+
 	if((argc>1) && (strcmp( "-rm", argv[1]) == 0)){
 
 		if(shm_unlink(SHM_NAME) <0){
 			
 			perror("Error removing shared memory");
 			exit(5);
-		}else{
-
-			if(close(fd) <0){
-
-				perror("Error closing shared memory");
-				exit(6);
-			}
-
 		}
-
 	}
 
 	return 0;
