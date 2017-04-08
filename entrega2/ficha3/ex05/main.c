@@ -14,7 +14,7 @@
 
 int main (void) {
 	pid_t pid;
-	int i, cont, highest, lowest;
+	int i, cont=0, highest, lowest;
 	float average;
 	int data_size = sizeof(aluno);
 	int fd = shm_open(SHM_NAME, O_CREAT|O_EXCL| O_RDWR, S_IRUSR | S_IWUSR);
@@ -56,14 +56,7 @@ int main (void) {
 		}
 		
 		shared_data->flag=1;
-		while(shared_data->flag!=2) {
-			sleep(1);
-			cont++;
-			if(cont==60) {
-				perror("Operation time ended without response");
-				break;
-			}
-		}
+		wait(NULL);
 
 		if(munmap(shared_data, data_size)<0) {
 			perror("Unmapping error");
@@ -85,8 +78,8 @@ int main (void) {
 
 		while(shared_data->flag!=1) {
 			sleep(1);
-			cont++;
-			if(cont==60) {
+			cont+=1;
+			if(cont>60) {
 				perror("Operation time ended without response");
 				exit(8);
 			}
@@ -98,7 +91,6 @@ int main (void) {
 		printf("The highest grade: %d\n", highest);
 		printf("The lowest grade: %d\n", lowest);
 		printf("The average: %0.2f\n", average);
-		shared_data->flag=2;
 		exit(9);
 	}
 

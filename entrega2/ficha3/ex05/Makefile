@@ -1,5 +1,5 @@
 main: main.o calculateAverage.o calculateHighest.o calculateLowest.o
-	gcc -lrt -lm -Wall -g main.o calculateAverage.o calculateHighest.o calculateLowest.o -o ex06
+	gcc -lrt -lm -Wall -g main.o calculateAverage.o calculateHighest.o calculateLowest.o -o ex05
 
 main.o: main.c calculateAverage.h calculateHighest.h calculateLowest.h
 	gcc -lrt -lm -Wall -g -c main.c
@@ -14,7 +14,7 @@ calculateAverage.o: calculateAverage.c
 	gcc -lrt -lm -Wall -g -c calculateAverage.c
 
 run: main
-	./ex06
+	./ex05
 
 clean: 
-	rm *.o ex06
+	rm *.o ex05
