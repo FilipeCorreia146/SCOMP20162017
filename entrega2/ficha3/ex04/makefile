@@ -7,7 +7,7 @@ clean:
 run_ex04: ex04 
 	./ex04
 
-delete_memory:
+delete_memory: ex04
 	./ex04 -rm
 
 run: delete_memory

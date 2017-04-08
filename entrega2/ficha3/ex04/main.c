@@ -49,52 +49,49 @@ int main(int argc, char* argv[]){
 			exit(-1);
 		}
 		if(pid == 0){
-			break;
+			max = 0;
+			for (j = i*num_searches; j < (i*num_searches)+num_searches; j++) {
+				if(array[j] >= max) {
+					max = array[j];
+				}
+			}
+			shared_data->local_max_size[i] = max;	
+			exit(1);	
 		}
 	}
 	
-	
-	/*for (i = 0; i < num_processes; i++) {
-		pid = fork();
-		if(pid < 0) {
-			perror("Erro no fork");
-			exit(-1);
-		}*/
-	if(i != num_processes) {
-		max = 0;
-		for (j = i*num_searches; j < j+num_searches; j++) {
-			if(array[i] >= max) {
-				max = array[i];
-			}
-		}
-		shared_data->local_max_size[i] = max;		
-	} else{
-		for (i = 0; i < num_processes; i++) {
-			wait(NULL);
-		}
-		
-		
-		max = 0;
-		for (i = 0; i < ARRAY_SIZE; i++) {
-			if(shared_data->local_max_size[i] >= max) {
-				max = shared_data->local_max_size[i];
-			}
-		}
-		printf("Global maximum: %d\n", max);
-		
-		if(shm_unlink(SHM_NAME) < 0) {
-			exit(5);
-		}
+	for (i = 0; i < num_processes; i++) {
+		wait(NULL);
+	}
 
-		if(munmap(shared_data, data_size)<0) {
-			exit(4);
-		}
-	
-		if(close(fd) < 0) {
-			exit(6);
-		}
-	
+	for (i = 0; i < 10; i++)
+	{
+		printf("%d\n",shared_data->local_max_size[i]);
 	}
+	
+
+	max = 0;
+	for (i = 0; i < ARRAY_SIZE; i++) {
+		if(shared_data->local_max_size[i] >= max) {
+			max = shared_data->local_max_size[i];
+		}
+	}
+	printf("Global maximum: %d\n", max);
+
+	if(munmap(shared_data, data_size)<0) {
+		exit(4);
+	}
+
+	if(close(fd) < 0) {
+		exit(6);
+	}
+	
+	if(shm_unlink(SHM_NAME) < 0) {
+		exit(5);
+	}
+	
+	
+	
 	
 	return 0;
 }
