@@ -42,16 +42,16 @@ int main(void) {
 	if(pid==0) {
 		sem_wait(semaforo);
 
-		if((fp=fopen(FILE_NAME, "a"))<0){
+		if((fp=fopen(FILE_NAME, "a"))<0) {
 			perror("Couldn't open file");
 			exit(2);
 		}
 
-		for(i=0; i<WRITE_NUM; i++){
+		for(i=0; i<WRITE_NUM; i++) {
 			fprintf(fp, "%d\n", i);
 		}
 
-		if(fclose(fp)<0){
+		if(fclose(fp)<0) {
 			perror("Error closing file");
 			exit(3);
 		}
@@ -75,7 +75,7 @@ int main(void) {
 		}
 
 		if(fp) {
-			while(fscanf(fp, "%d", &num)!= EOF){
+			while(fscanf(fp, "%d", &num)!= EOF) {
 				printf("%d\n", num);
 			}
 
