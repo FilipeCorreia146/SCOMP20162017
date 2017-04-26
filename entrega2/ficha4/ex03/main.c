@@ -10,7 +10,6 @@
 #include <semaphore.h>
 
 #define CHILD_NUM 7
-#define FILE_NAME "ficheiro.txt"
 
 int main(int argc, char * argv[]) {
 	
@@ -36,14 +35,33 @@ int main(int argc, char * argv[]) {
 	if(pid==0) {
 		sem_wait(semaforo);
 
-		if((fp=fpopen(FILE_NAME,"a"))<0) {
+		if((fp=fopen(argv[1],"a"))<0) {
 			perror("Couldn't open file");
 			exit(3);
 		}
 
-		fprintf(fp,
+		fprintf(fp,"Eu sou o processo com o PID %d\n", getpid());
+
+		sleep(2);
+
+		if(fclose(fp)<0) {
+			perror("Error closing file");
+			exit(4);
+		}
+
+		sem_post(semaforo);
 	}
+
 	if(pid>0) {
+
+		for(i=0; i<CHILD_NUM; i++) {
+			wait(NULL);
+		}
+
+		if(sem_unlink("semaforo")<0) {
+			perror("Error unlinking semaphore");
+			exit(5);
+		}
 	}
 
 	return 0;
