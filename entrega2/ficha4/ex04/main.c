@@ -8,7 +8,9 @@
 #include <sys/mman.h>
 #include <fcntl.h>
 #include <semaphore.h>
+#include "countlines.h"
 
+#define LINE_LIMIT 10
 #define CHILD_NUM 7
 
 int main(int argc, char * argv[]) {
@@ -40,7 +42,11 @@ int main(int argc, char * argv[]) {
 			exit(3);
 		}
 
-		fprintf(fp,"Eu sou o processo com o PID %d\n", getpid());
+		if(countlines(argv[1]) <= LINE_LIMIT) {
+			fprintf(fp,"Eu sou o processo com o PID %d\n", getpid());
+		} else {
+			printf("Não são permitidas mais de 10 linhas por ficheiro!\n");
+		}
 
 		sleep(2);
 
@@ -58,14 +64,9 @@ int main(int argc, char * argv[]) {
 			wait(NULL);
 		}
 
-		if(sem_close(semaforo)<0) {
-			perror("Error closing semaphore");
-			exit(5);
-		}
-
 		if(sem_unlink("semaforo")<0) {
 			perror("Error unlinking semaphore");
-			exit(6);
+			exit(5);
 		}
 	}
 

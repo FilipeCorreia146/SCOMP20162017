@@ -86,9 +86,13 @@ int main(void) {
 			exit(5);
 		}
 
+		if(sem_close(semaforo) < 0) {
+			perror("Closing error");
+			exit(6);
+
 		if(sem_unlink("semaforo") < 0) {
 			perror("Unlinking error");
-			exit(6);
+			exit(7);
 		}
 	}
 

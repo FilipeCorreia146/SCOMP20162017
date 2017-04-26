@@ -1,0 +1,1 @@
+int countlines( char * filename);

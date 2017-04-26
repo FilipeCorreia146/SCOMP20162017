@@ -99,18 +99,23 @@ int main(void) {
 		switch(order) {
 
 			case 1:
+				sem_close(sem1);
 				sem_post(sem2);
 				break;
 			case 2: 
+				sem_close(sem2);
 				sem_post(sem3);
 				break;
 			case 3:
+				sem_close(sem3);
 				sem_post(sem4);
 				break;
 			case 4: 
+				sem_close(sem4);
 				sem_post(sem5);
 				break;
 			case 5:
+				sem_close(sem5);
 				 break;
 			default: 
 				 break;
