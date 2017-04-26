@@ -35,10 +35,10 @@ int main(int argc, char* argv[]){
 		//espera
 	} while(shared_data->flag != 1);    /*só pode ler quando a flag estiver a 1*/
 	
-		for (i = 0; i < ARRAY_SIZE; i++ ) {
-			sum = sum + shared_data->array[i] ;
-			average = (sum) / (ARRAY_SIZE);
-		}
+	for (i = 0; i < ARRAY_SIZE; i++ ) {
+		sum = sum + shared_data->array[i] ;
+		average = (sum) / (ARRAY_SIZE);
+	}
 
 	printf("Average: %d\n", average);
 	
