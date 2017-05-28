@@ -4,11 +4,11 @@ main: main.o func.o
 main.o: main.c ex05.h
 	gcc -lrt -lm -Wall -g -c main.c -lpthread
 
-func.o: ex05.h
+func.o: func.c ex05.h
 	gcc -lrt -lm -Wall -g -c func.c -lpthread
 
 run: main
 	./ex05
 
-clean: 
+clean:
 	rm *.o ex05
