@@ -19,10 +19,10 @@ void* caracol1(void *arg) {
 	int i = 0; 
 	inicio = time(NULL);
 	for(i = 0; i < 9; i++) {
-		pthread_mutex_lock(&mutex[caminho[i]][caminho[i+1]]);
-		sleep(tempos[caminho[i]][caminho[i+1]]);
-		tempos[caminho[i]][caminho[i+1]] *=2;/*Para aumentar o tempo de passagem*/
-		pthread_mutex_unlock(&mutex[caminho[i]][caminho[i+1]]);
+		pthread_mutex_lock(&mutex[percurso[i]][percurso[i+1]]);
+		sleep(tempos[percurso[i]][percurso[i+1]]);
+		tempos[percurso[i]][percurso[i+1]] *=2;/*Para aumentar o tempo de passagem*/
+		pthread_mutex_unlock(&mutex[percurso[i]][percurso[i+1]]);
 	}
 	fim = time(NULL);
 	tempo = difftime(fim,inicio);	
@@ -36,10 +36,10 @@ void* caracol2(void *arg) {
 	int i = 0; 
 	inicio = time(NULL);
 	for(i = 0; i < 10; i++){
-		pthread_mutex_lock(&mutex[caminho[i]][caminho[i+1]]);
-		sleep(tempos[caminho[i]][caminho[i+1]]);
-		tempos[caminho[i]][caminho[i+1]] *=2; 
-		pthread_mutex_unlock(&mutex[caminho[i]][caminho[i+1]]);
+		pthread_mutex_lock(&mutex[percurso[i]][percurso[i+1]]);
+		sleep(tempos[percurso[i]][percurso[i+1]]);
+		tempos[percurso[i]][percurso[i+1]] *=2; 
+		pthread_mutex_unlock(&mutex[percurso[i]][percurso[i+1]]);
 	}
 	fim = time(NULL);
 	tempo = difftime(fim,inicio);
@@ -53,10 +53,10 @@ void* caracol3(void *arg){
 	int i = 0; 
 	inicio = time(NULL);
 	for(i = 0; i < 9; i++){
-		pthread_mutex_lock(&mutex[caminho[i]][caminho[i+1]]);
-		sleep(tempos[caminho[i]][caminho[i+1]]);
-		tempos[caminho[i]][caminho[i+1]] *=2; 
-		pthread_mutex_unlock(&mutex[caminho[i]][caminho[i+1]]);
+		pthread_mutex_lock(&mutex[percurso[i]][percurso[i+1]]);
+		sleep(tempos[percurso[i]][percurso[i+1]]);
+		tempos[percurso[i]][percurso[i+1]] *=2; 
+		pthread_mutex_unlock(&mutex[percurso[i]][percurso[i+1]]);
 	}
 	fim = time(NULL);
 	tempo = difftime(fim,inicio);
@@ -116,7 +116,7 @@ int main(int argc, char **argv) {
 	int i;
 	unsigned long resultados[3];
 	unsigned long vencedor;
-	int numCaracol;
+	int numCaracol = 1;
 	
 	preencher_matrizes();
 	
@@ -139,7 +139,7 @@ int main(int argc, char **argv) {
 		pthread_join(threads[i], (void *) &resultados[i]);
 	}
 	
-	printf("\n\Tempos:\nCaracol 1: %lu\nCaracol 2: %lu\nCaracol 3: %lu\n\n", resultados[0], resultados[1], resultados[2]); 
+	printf("\nTempos:\nCaracol 1: %lu\nCaracol 2: %lu\nCaracol 3: %lu\n\n", resultados[0], resultados[1], resultados[2]); 
 	
 	vencedor = resultados[0];
 	for (i = 1; i < 3; i++){
